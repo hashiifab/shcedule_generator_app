@@ -8,17 +8,35 @@ class ScheduleResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Hasil Jadwal")),
+      backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        backgroundColor: Colors.grey[900],
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Hasil Jadwal",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "📅 Jadwal Anda:",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            Divider(),
+            const Divider(color: Colors.white54),
             Expanded(
               child: ListView.builder(
                 itemCount: scheduleResult.split("\n").length,
@@ -27,18 +45,31 @@ class ScheduleResultScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: SelectableText(
                       scheduleResult.split("\n")[index],
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
                     ),
                   );
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
-              child: ElevatedButton(
-                onPressed: () =>
-                    Navigator.pop(context), // Kembali ke HomeScreen
-                child: Text("🔙 Kembali"),
+              child: ElevatedButton.icon(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                label: const Text(
+                  "Kembali",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ),
             ),
           ],
